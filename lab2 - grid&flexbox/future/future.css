@@ -1,3 +1,12 @@
 div {
-    background-color: grey;
+    background-color: #F83259;
+    display: grid;
+    grid-template-rows: repeat(10, 50px);
+    grid-template-columns: 1fr 10fr;
+}
+#broken{
+    background-color: #63F6F3;
+}
+#cloud{
+    background-color: #FFFF04;
 }
