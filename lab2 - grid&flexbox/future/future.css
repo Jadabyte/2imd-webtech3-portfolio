@@ -1,12 +1,19 @@
-div {
-    background-color: #F83259;
-    display: grid;
-    grid-template-rows: repeat(10, 50px);
-    grid-template-columns: 1fr 10fr;
+body{
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 1.25em;
 }
-#broken{
+#parent{
+    display: grid;
+    grid-template-rows: repeat(auto-fit, 1fr);
+    grid-gap: 10px;
+}
+#parent div{
+    background-color: #F83259;
+}
+#parent #broken{
     background-color: #63F6F3;
 }
-#cloud{
+#parent #cloud{
     background-color: #FFFF04;
 }
