@@ -3,12 +3,35 @@ body{
     font-family: sans-serif;
     font-size: 1.25em;
 }
+@media(min-width: 620px){
+    #parent{
+        grid-template-rows: repeat(auto-fit, 1fr);
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media(min-width: 963px){
+    #parent{
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: repeat(5, 1fr);
+    }
+    #broken{
+        grid-column: 3;
+        grid-row: 1 / span 3;
+    }
+    #cloud{
+        grid-column: 4 / span 2;
+        grid-row: 2 / span 2;
+    }
+}
 #parent{
     display: grid;
-    grid-template-rows: repeat(auto-fit, 1fr);
+    grid-template-rows: repeat(10, 1fr);
     grid-gap: 10px;
 }
 #parent div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #F83259;
 }
 #parent #broken{
@@ -16,4 +39,7 @@ body{
 }
 #parent #cloud{
     background-color: #FFFF04;
+}
+h2{
+    padding: 10px;
 }
