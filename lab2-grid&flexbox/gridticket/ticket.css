@@ -62,8 +62,6 @@ div:nth-child(6){
 
 @media(min-width: 1200px){
     main{
-        background:linear-gradient(0deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url(img/background.jpg);
-        background-size: cover;
         background-position: center bottom;
         grid-template-rows: 1fr, 1fr, 1fr;
         grid-template-columns: 1fr 1fr 1fr 1fr;
