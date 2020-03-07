@@ -15,11 +15,14 @@ class Note {
     let newA = document.createElement("a");
     newA.innerHTML = "Remove";
     newA.setAttribute("class", "card-remove");
+    newA.setAttribute("href", "#");
 
     newNote.appendChild(newP);
     newNote.appendChild(newA);
     
     // HINT🤩 a.addEventListener('click', this.remove.bind(newNote));
+
+    newA.addEventListener('click', this.remove.bind(newNote));
     
     return newNote;
   }
@@ -39,6 +42,7 @@ class Note {
   remove(){
     // HINT🤩 the meaning of 'this' was set by bind() in the createElement function
     // in this function, 'this' will refer to the current note element
+    this.remove();
   } 
 }
 
@@ -53,6 +57,15 @@ class App {
     this.btnAdd = document.querySelector("#btnAddNote");
     // this.btnAdd.addEventListener("click", this.createNote.bind(this));
     this.btnAdd.addEventListener("click", this.createNote.bind(this));
+
+    this.fieldAdd = document.querySelector("#txtAddNote");
+    let yes = this;
+    this.fieldAdd.addEventListener("keypress", function(e) {
+      if(e.keyCode === 13){
+        console.log("yee");
+        e.preventDefault();
+      };
+    });
     // this.loadNotesFromStorage();
   }
   
