@@ -43,7 +43,6 @@ class Note {
     localStorage.setItem("todo-" + counter, JSON.stringify(this));
 
     localStorage.setItem('counter', counter);
-    console.log(JSON.parse(localStorage.getItem("todo")));
   }
   
   remove(){
@@ -67,7 +66,7 @@ class App {
 
     const enter = () => {this.createNote()};
     this.fieldAdd = document.querySelector("#txtAddNote");
-    this.fieldAdd.addEventListener("keyup", function(e) {
+    this.fieldAdd.addEventListener("keypress", function(e) {
       if(e.keyCode === 13){
         enter()
         e.preventDefault();
@@ -81,6 +80,13 @@ class App {
     // HINT🤩
     // load all notes from storage here and add them to the screen
     // something like note.add() in a loop would be nice
+    let counter = localStorage.getItem('counter');
+
+    for(let i = 1; i <= counter; i++){
+      let text = JSON.parse(localStorage.getItem("todo-" + i)).title;
+      let note = new Note(text);
+      note.add();
+    }
 
   }
    
