@@ -23,7 +23,6 @@ class Note {
     // HINT🤩 a.addEventListener('click', this.remove.bind(newNote));
 
     newA.addEventListener('click', this.remove.bind(newNote));
-    newA.addEventListener('click', this.saveToStorage.bind(newNote));
     
     return newNote;
   }
@@ -38,7 +37,13 @@ class Note {
     // HINT🤩
     // localStorage only supports strings, not arrays
     // if you want to store arrays, look at JSON.parse and JSON.
-    localStorage.setItem('todo', this);
+    let counter = localStorage.getItem('counter');
+    counter++;
+
+    localStorage.setItem("todo-" + counter, JSON.stringify(this));
+
+    localStorage.setItem('counter', counter);
+    console.log(JSON.parse(localStorage.getItem("todo")));
   }
   
   remove(){
