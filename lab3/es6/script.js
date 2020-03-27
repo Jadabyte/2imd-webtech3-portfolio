@@ -64,18 +64,19 @@ class App {
     this.fieldAdd = document.querySelector("#txtAddNote");
     this.fieldAdd.addEventListener("keyup", function(e) {
       if(e.keyCode === 13){
-        console.log("key");
-        enter();
+        enter()
         e.preventDefault();
       };
     });
     // this.loadNotesFromStorage();
+    this.loadNotesFromStorage();
   }
   
   loadNotesFromStorage() {
     // HINT🤩
     // load all notes from storage here and add them to the screen
     // something like note.add() in a loop would be nice
+
   }
    
   createNote(e){
@@ -86,11 +87,14 @@ class App {
     let note = new Note(text);
     note.add();
     // note.saveToStorage();
+    note.saveToStorage();
     // this.reset();
+    this.reset();
   }
   
   reset(){
-    // this function should reset the form 
+    // this function should reset the form
+    this.fieldAdd.value = "";
   }
   
 }
