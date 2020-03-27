@@ -59,11 +59,12 @@ class App {
     this.btnAdd.addEventListener("click", this.createNote.bind(this));
 
     this.fieldAdd = document.querySelector("#txtAddNote");
-    let yes = this;
-    this.fieldAdd.addEventListener("keypress", function(e) {
-      if(e.keyCode === 13){
-        console.log("yee");
+    this.fieldAdd.addEventListener("keyup", function(e) {
+      if(e.keyCode === 65){
+        console.log("yeet");
+        console.log(this);
         e.preventDefault();
+        this.createNote.bind(this);
       };
     });
     // this.loadNotesFromStorage();
