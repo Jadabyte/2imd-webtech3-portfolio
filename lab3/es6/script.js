@@ -23,6 +23,7 @@ class Note {
     // HINT🤩 a.addEventListener('click', this.remove.bind(newNote));
 
     newA.addEventListener('click', this.remove.bind(newNote));
+    newA.addEventListener('click', this.saveToStorage.bind(newNote));
     
     return newNote;
   }
@@ -36,7 +37,8 @@ class Note {
   saveToStorage(){
     // HINT🤩
     // localStorage only supports strings, not arrays
-    // if you want to store arrays, look at JSON.parse and JSON.stringify
+    // if you want to store arrays, look at JSON.parse and JSON.
+    localStorage.setItem('todo', this);
   }
   
   remove(){
@@ -58,13 +60,13 @@ class App {
     // this.btnAdd.addEventListener("click", this.createNote.bind(this));
     this.btnAdd.addEventListener("click", this.createNote.bind(this));
 
+    const enter = () => {this.createNote()};
     this.fieldAdd = document.querySelector("#txtAddNote");
     this.fieldAdd.addEventListener("keyup", function(e) {
-      if(e.keyCode === 65){
-        console.log("yeet");
-        console.log(this);
+      if(e.keyCode === 13){
+        console.log("key");
+        enter();
         e.preventDefault();
-        this.createNote.bind(this);
       };
     });
     // this.loadNotesFromStorage();
