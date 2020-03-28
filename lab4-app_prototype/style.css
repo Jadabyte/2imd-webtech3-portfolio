@@ -1,16 +1,24 @@
 body{
+    font-family: sans-serif;
+    font-weight: normal;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 main{
-    color: black;
-    background-size: contain;
-    background-repeat: no-repeat;
+    color: white;
+    background-size: cover;
     display: flex;
+    border-radius: 50px;
     align-items: center;
-    flex-direction: column;
-    height: 500px;
-    width: 500px;
+    justify-content: center;
+    height: 760px;
+    width: 400px;
+}
+#info{
+    display: inline-block;
+    width: 75%;
+    border-radius: 30px;;
+    background-color: rgba(0, 0, 0, 0.65);
 }
