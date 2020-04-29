@@ -18,6 +18,7 @@ class App {
             this.lat;
             this.lng;
         }
+        this.getMovie();
     }
 
     getLocation(){
@@ -44,6 +45,17 @@ class App {
             let temperature = Math.round(data.currently.temperature);
             this.checkTemp(temperature, precipitation, summary);
             this.saveToStorage(temperature, precipitation, summary);
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    getMovie(){
+        let url = `https://cors-anywhere.herokuapp.com/http://www.omdbapi.com/?i=tt3896198&apikey=3626e9cb`;
+        fetch(url).then(response => {
+            return response.json();
+        }).then(data => {
+            let title = Title;
         }).catch(err => {
             console.log(err);
         });
