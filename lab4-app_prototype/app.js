@@ -1,24 +1,6 @@
 class App {
     constructor(){
-        //check if there is stuff in local storage
-        //if not, stuff needs to be stored
-        //the counter needs to be updated
-
-        //this makes sure that the api isn't being called too often
-        let minutes = 5;
-        let saved = localStorage.getItem('saved');
-        if(saved && (new Date()).getTime() - saved > minutes * 1000){
-            localStorage.clear()
-            this.getLocation();
-            this.lat;
-            this.lng;
-        }
-        else if(saved == null){
-            this.getLocation();
-            this.lat;
-            this.lng;
-        }
-        this.getMovie();
+        this.getLocation();   
     }
 
     getLocation(){
@@ -41,45 +23,30 @@ class App {
         }).then(data => {
             document.querySelector("#weather").innerHTML = "It is currently " + Math.round(data.currently.temperature) + "°C";
             let summary = data.currently.summary.toLowerCase();
-            let precipitation = data.currently.precipIntensity;
-            let temperature = Math.round(data.currently.temperature);
-            this.checkTemp(temperature, precipitation, summary);
-            this.saveToStorage(temperature, precipitation, summary);
+            this.getFilm();
+            let message = document.querySelector("#message");
+            message.innerHTML = "It's " + summary + " right now, let's watch:";
         }).catch(err => {
             console.log(err);
         });
     }
-
-    getMovie(){
-        let url = `https://cors-anywhere.herokuapp.com/http://www.omdbapi.com/?i=tt3896198&apikey=3626e9cb`;
+    getFilm(){
+        var films = ["night+of+the+living+dead", "the+thing", "thor+ragnarok", "parasite", "portrait+of+a+lady+on+fire", "knives+out", "midsommar", "the+lighthouse", "once+upon...+a+time+in+hollywood", "her", "total+recall"]
+        let number = Math.floor((Math.random() * 10) + 1);
+        let url = `https://cors-anywhere.herokuapp.com/http://www.omdbapi.com/?t=` + films[number] + `&apikey=3626e9cb`;
+        console.log(url);
         fetch(url).then(response => {
             return response.json();
         }).then(data => {
-            let title = Title;
+            let title = data.Title;
+            let poster = data.Poster;
+            let background = document.querySelector("main");
+            let displayTitle = document.getElementById("title");
+            background.style.backgroundImage = "url('" + poster + "')";
+            displayTitle.innerHTML = title;
         }).catch(err => {
             console.log(err);
         });
-    }
-
-    checkTemp(temperature, precipitation, summary){
-        let message = document.querySelector("#message");
-        let background = document.querySelector("main");
-        if(temperature < 10){
-            message.innerHTML = "Let's stay inside and play some Animal Crossing";
-            background.style.backgroundImage = "url('images/AnimalCrossing.jpg')";
-            background.style.backgroundPositionX = "-525px";
-        }
-        else if(precipitation > 0){
-            message.innerHTML = "It's " + summary + " right now, let's go out and play some Pokemon Go";
-            background.style.backgroundImage = "url('images/PokemonGo.jpg')";
-            background.style.backgroundPositionX = "-525px";
-        }
-    }
-    saveToStorage(temperature, precipitation, summary){
-        localStorage.setItem("temperature", JSON.stringify(temperature));
-        localStorage.setItem("precipitation", JSON.stringify(precipitation));
-        localStorage.setItem("summary", JSON.stringify(summary));
-        localStorage.setItem('saved', new Date().getTime());
     }
 
     errorLocation(err){
